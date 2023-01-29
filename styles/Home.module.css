@@ -1,0 +1,20 @@
+.mainindex {
+  height: calc(100vh - 200px);
+  align-items: center;
+  width: 1224px;
+  display: flex;
+}
+.gradient {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(0deg, #52309b 0%, rgba(255, 255, 255, 0) 100%);
+  text-align: center;
+  line-height: 80px;
+}
+.gradient180 {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(180deg, #52309b 0%, rgba(255, 255, 255, 0) 100%);
+  text-align: center;
+  line-height: 80px;
+}

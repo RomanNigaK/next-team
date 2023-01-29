@@ -1,69 +1,54 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
-import styled from "styled-components";
+import stylelayout from "../../styles/layout.module.css";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <>
+    <div>
       <Header />
       {children}
-      kke;welfsdl;
-    </>
+      <Footer />
+    </div>
   );
 }
 
-const Links = styled.div`
-  display: flex;
-  border-top: 1px solid black;
-  height: 30px;
-  align-items: center;
-  & div {
-    margin-right: 10px;
-  }
-`;
-
 function Header() {
   return (
-    <>
-      <header>
-        <div id="container">
-          <nav>
-            <Image
-              src="/Logo.png"
-              alt="Logo"
-              width={100}
-              height={100}
-              priority
-            />
-            <div>
-              <h3>Next-team</h3>
-              <Links>
-                <div>
-                  <a>
-                    <Link href="/">Главная</Link>
-                  </a>
-                </div>
-                <div>
-                  <a>
-                    <Link href="/msg/">Сообщения</Link>
-                  </a>
-                </div>
-                <div>
-                  <a>
-                    <Link href="/number">Ввод чисел</Link>
-                  </a>
-                </div>
-                <div>
-                  <a>
-                    <Link href="/">Git</Link>
-                  </a>
-                </div>
-              </Links>
+    <header>
+      <div id="container">
+        <nav>
+          <Image src="/Logo.png" alt="Logo" width={100} height={100} priority />
+          <div>
+            <h3>Next-team</h3>
+            <div className={stylelayout.links}>
+              <div>
+                <Link href="/">Главная</Link>
+              </div>
+              <div>
+                <Link href="/msg/">Сообщения</Link>
+              </div>
+              <div>
+                <Link href="/">Ввод чисел</Link>
+              </div>
+              <div>
+                <Link href="/">Git</Link>
+              </div>
             </div>
-          </nav>
-        </div>
-      </header>
-    </>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div>
+        <Image src="/Logo.png" alt="Logo" width={50} height={50} priority />
+        Next-team — команда специалистов области интернет-маркетинга.
+      </div>
+    </footer>
   );
 }

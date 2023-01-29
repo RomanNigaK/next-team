@@ -1,0 +1,9 @@
+.links {
+  display: flex;
+  border-top: 1px solid black;
+  height: 30px;
+  align-items: center;
+}
+.links div {
+  margin-right: 10px;
+}

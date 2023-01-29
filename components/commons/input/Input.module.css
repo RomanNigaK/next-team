@@ -1,0 +1,15 @@
+.input {
+  height: 30px;
+  width: 200px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+.error {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  color: red;
+}

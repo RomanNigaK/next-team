@@ -1,12 +1,18 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
-import styles from "@/styles/Index.module.css";
+import styleindex from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <>
-      <main>sdjfdsklfj</main>
-    </>
+    <main>
+      <div className={styleindex.mainindex}>
+        <div style={{ width: "1224px" }}>
+          <div className={styleindex.gradient}>
+            <h2>Сообщения</h2>
+          </div>
+          <div className={styleindex.gradient180}>
+            <h2>Ввод чисел</h2>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
