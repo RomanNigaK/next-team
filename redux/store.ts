@@ -1,17 +1,41 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { appSlice } from "./appSlice";
-import { createWrapper } from "next-redux-wrapper";
+import { configureStore, combineReducers, AnyAction } from "@reduxjs/toolkit";
+import messages from "./messagesSlice";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
-const makeStore = () =>
+const combinedReducers = combineReducers({
+  messages,
+});
+
+const masterReducer = (state: RootState, action: AnyAction) => {
+  console.log("FFFFFFFFFFFFFFFFFFF");
+  console.log(action);
+  if (action.type === HYDRATE) {
+    const nextState = {
+      ...state,
+      messages: {
+        messages: [
+          ...action.payload.messages.messages,
+          ...state.messages.messages,
+        ],
+      },
+    };
+    return nextState;
+  } else {
+    return combinedReducers(state, action);
+  }
+};
+
+export const makeStore = () =>
   configureStore({
-    reducer: {
-      [appSlice.name]: appSlice.reducer,
-    },
-    devTools: true,
+    reducer: masterReducer,
   });
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore["getState"]>;
+export type AppStore = ReturnType<typeof masterReducer>;
+
+type RootState = ReturnType<typeof masterReducer.getState>;
+export type { RootState };
+
 export type AppDispatch = AppStore["dispatch"];
 
-export const wrapper = createWrapper<AppStore>(makeStore, { debug: true });
+export const wrapper = createWrapper<AppStore>(makeStore);
+//{ debug: true }
