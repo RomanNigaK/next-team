@@ -32,7 +32,12 @@ function Header() {
                 <Link href="/number">Ввод чисел</Link>
               </div>
               <div>
-                <Link href="/">Git</Link>
+                <Link
+                  href="https://github.com/RomanNigaK/next-team"
+                  target="_blank"
+                >
+                  Git
+                </Link>
               </div>
             </div>
           </div>

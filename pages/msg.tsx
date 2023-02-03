@@ -1,5 +1,5 @@
 import { RootState } from "@/redux/store";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styleHome from "./../styles/Home.module.css";
 import style from "./../styles/Msg.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,6 @@ import Submit from "@/components/commons/submit/Submit";
 import { addMessage, clearMessage } from "@/redux/messagesSlice";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Context } from "next-redux-wrapper";
 
 const schema = yup
   .object({
@@ -27,19 +26,7 @@ type IForm = {
 };
 export type { IForm };
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   (store) => async () => {
-//     let gg = await store.dispatch(
-//       addMessage({ author: "Anna", text: "112222111" })
-//     );
-
-//     return {
-//       props: { data: gg },
-//     };
-//   }
-// );
-
-export async function getServerSideProps(context: Context) {
+export async function getServerSideProps() {
   let response = await fetch("http://localhost:3000/api/addmessage");
   let data = await response.json();
 
@@ -66,16 +53,11 @@ export default function Index({ data }: any) {
 
   useEffect(() => {
     dispatch(clearMessage());
-  }, []);
+  }, [dispatch]);
 
   const messages = useSelector((state: RootState) =>
     selectMessages(state, data.messages).concat(data)
   );
-
-  // const [form, setform] = useState<IForm>({
-  //   author: "",
-  //   text: "",
-  // });
 
   const {
     register,
@@ -95,7 +77,6 @@ export default function Index({ data }: any) {
     if (res.status === "ok") {
       dispatch(addMessage(data));
     }
-    // setform({ author: "", text: "" });
   });
 
   return (
@@ -106,9 +87,9 @@ export default function Index({ data }: any) {
             <h2>Сообщения</h2>
           </div>
           {messages
-            ? messages.map((msg: any) => {
+            ? messages.map((msg: any, index) => {
                 return (
-                  <article className={style.msg} key={msg.id}>
+                  <article className={style.msg} key={index + "messages"}>
                     <h2>{msg.author}</h2>
                     <div className={style.text}>{msg.text}</div>
                   </article>

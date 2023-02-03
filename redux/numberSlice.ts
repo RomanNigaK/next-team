@@ -9,7 +9,11 @@ export const sendInputNumber = createAsyncThunk(
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
-    }).then((data) => data.json());
+    })
+      .then((data) => data.json())
+      .catch((err) => {
+        throw err;
+      });
     return response;
   }
 );

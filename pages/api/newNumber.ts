@@ -54,18 +54,6 @@ export default function handler(
         }
       );
     });
-
-    // numbers.push({
-    //   currentNumber,
-    //   lastNumber,
-    //   currentAverage,
-    // });
-    // console.log(numbers);
-    // console.log({
-    //   currentNumber,
-    //   lastNumber,
-    //   currentAverage,
-    // });
   }
   if (req.method === "GET") {
     fs.readFile("./pages/api/numbers.json", function (err: any, data: any) {

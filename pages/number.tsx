@@ -9,13 +9,12 @@ import {
   isLoadNumbersHistory,
   selectCurrentNumber,
   selectHistoryNumber,
-  selectNumbers,
 } from "@/redux/selectors";
 import { RootState } from "@/redux/store";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styleNumber from "./../styles/Number.module.css";
 
 interface IFormNumber {
@@ -78,9 +77,9 @@ export default function Number() {
           <h3>{!load ? "Вычесление..." : "Текущий результат"}</h3>
         </div>
         {result.length
-          ? result.map((item) => {
+          ? result.map((item, index) => {
               return (
-                <>
+                <div key={index + "result"}>
                   <div className={styleNumber.currentResult}>
                     <div className={styleNumber.title}>
                       Введеное число: {item.currentNumber}
@@ -92,7 +91,7 @@ export default function Number() {
                       Среднее значение: {item.currentAverage}
                     </div>
                   </div>
-                </>
+                </div>
               );
             })
           : "Нет текущих вычеслений"}
@@ -102,9 +101,9 @@ export default function Number() {
         </div>
         {loadHistory
           ? resultHistory
-            ? resultHistory.map((item) => {
+            ? resultHistory.map((item, index) => {
                 return (
-                  <>
+                  <div key={index + "resultHistory"}>
                     <div className={styleNumber.currentResult}>
                       <div className={styleNumber.title}>
                         Введеное число: {item.currentNumber}
@@ -116,7 +115,7 @@ export default function Number() {
                         Среднее значение: {item.currentAverage}
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })
             : "Нет истории..."
