@@ -29,7 +29,7 @@ function Header() {
                 <Link href="/msg/">Сообщения</Link>
               </div>
               <div>
-                <Link href="/">Ввод чисел</Link>
+                <Link href="/number">Ввод чисел</Link>
               </div>
               <div>
                 <Link href="/">Git</Link>

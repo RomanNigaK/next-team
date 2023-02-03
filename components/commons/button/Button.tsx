@@ -1,4 +1,7 @@
 import style from "./Button.module.css";
-export default function Button() {
-  return <div className={style.button}>Разместить сообщение</div>;
+interface IButtonProps {
+  title: string;
+}
+export default function Button({ title }: IButtonProps) {
+  return <div className={style.button}>{title}</div>;
 }

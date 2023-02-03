@@ -1,0 +1,28 @@
+.box {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.box div {
+  cursor: pointer;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.circlechek {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background: radial-gradient(50% 50% at 50% 50%, #d9d9d9 0%, #52309b 100%);
+  border: 1px solid #000000;
+  border-radius: 10px;
+}

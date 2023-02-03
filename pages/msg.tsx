@@ -1,4 +1,4 @@
-import { RootState, wrapper } from "@/redux/store";
+import { RootState } from "@/redux/store";
 import { useState, useEffect } from "react";
 import styleHome from "./../styles/Home.module.css";
 import style from "./../styles/Msg.module.css";
@@ -40,16 +40,17 @@ export type { IForm };
 // );
 
 export async function getServerSideProps(context: Context) {
-  let response = await fetch("http://localhost:3000/api/hello");
+  let response = await fetch("http://localhost:3000/api/addmessage");
   let data = await response.json();
+
   return {
     props: {
       data,
-    }, // will be passed to the page component as props
+    },
   };
 }
 export async function sedDataServer(message: IForm) {
-  let response = await fetch("http://localhost:3000/api/hello", {
+  let response = await fetch("http://localhost:3000/api/addmessage", {
     method: "POST",
     body: JSON.stringify(message),
     headers: {
@@ -67,16 +68,14 @@ export default function Index({ data }: any) {
     dispatch(clearMessage());
   }, []);
 
-  console.log(data);
-
   const messages = useSelector((state: RootState) =>
-    selectMessages(state, data).concat(data)
+    selectMessages(state, data.messages).concat(data)
   );
 
-  const [form, setform] = useState<IForm>({
-    author: "",
-    text: "",
-  });
+  // const [form, setform] = useState<IForm>({
+  //   author: "",
+  //   text: "",
+  // });
 
   const {
     register,
@@ -96,7 +95,7 @@ export default function Index({ data }: any) {
     if (res.status === "ok") {
       dispatch(addMessage(data));
     }
-    setform({ author: "", text: "" });
+    // setform({ author: "", text: "" });
   });
 
   return (
@@ -122,21 +121,16 @@ export default function Index({ data }: any) {
               <Input
                 register={register}
                 name="author"
-                value={form.author}
-                setform={setform}
-                form={form}
+                placeholder="Автор"
                 error={errors.author?.message}
               />
               <TextArea
                 register={register}
                 name="text"
-                form={form}
-                value={form.text}
-                setform={setform}
                 error={errors.text?.message}
               />
               <label htmlFor="submit">
-                <Button />
+                <Button title="Разместить сообщение" />
               </label>
               <Submit />
             </form>

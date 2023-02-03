@@ -1,0 +1,25 @@
+.groupchek {
+  display: flex;
+}
+.body {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.currentResult {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  padding-bottom: 10px;
+}
+.title {
+  margin-right: 20px;
+}
+.header {
+  text-align: left;
+  margin-top: 50px;
+  border-bottom: 1px solid black;
+}

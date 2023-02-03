@@ -11,7 +11,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   createServer(async (req, res) => {
-    console.log(req);
+    //console.log(req);
     try {
       // Be sure to pass `true` as the second argument to `url.parse`.
       // This tells it to parse the query portion of the URL.
