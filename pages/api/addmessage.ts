@@ -9,15 +9,11 @@ type Data = {
   text?: string;
 };
 
-let message: Array<Data> = [{ author: "author", text: "text" }];
-
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    message.push(req.body);
-    let msg;
     fs.readFile("./pages/api/messages.json", function (err: any, data: any) {
       if (err) throw err;
-      msg = JSON.parse(data);
+      let msg = JSON.parse(data);
       msg.push(req.body);
 
       fs.writeFile(
@@ -29,9 +25,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         }
       );
     });
-
-    //var newString = string.replace('|','');
-
     res.status(200).send({ status: "ok" });
   } else {
     let msg;
