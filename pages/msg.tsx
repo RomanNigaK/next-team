@@ -27,7 +27,7 @@ type IForm = {
 export type { IForm };
 
 export async function getServerSideProps() {
-  let response = await fetch("http://localhost:3000/api/addmessage");
+  let response = await fetch(process.env.API + "addmessage");
   let data = await response.json();
 
   return {
@@ -37,7 +37,7 @@ export async function getServerSideProps() {
   };
 }
 export async function sedDataServer(message: IForm) {
-  let response = await fetch("http://localhost:3000/api/addmessage", {
+  let response = await fetch("api/addmessage", {
     method: "POST",
     body: JSON.stringify(message),
     headers: {

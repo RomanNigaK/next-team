@@ -6,7 +6,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "node server.js",
-    "prod_start": "NODE_ENV=production node server.js",
+    "start_prod": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {

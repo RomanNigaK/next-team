@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const sendInputNumber = createAsyncThunk(
   "numbers/sendInputNumber",
   async (number: number) => {
-    let response = await fetch("http://localhost:3000/api/newNumber", {
+    let response = await fetch("api/newNumber", {
       method: "POST",
       body: JSON.stringify(number),
       headers: {
@@ -20,9 +20,7 @@ export const sendInputNumber = createAsyncThunk(
 export const getHistoryNumber = createAsyncThunk(
   "numbers/getHistoryNumber",
   async () => {
-    let response = await fetch("http://localhost:3000/api/newNumber").then(
-      (data) => data.json()
-    );
+    let response = await fetch("api/newNumber").then((data) => data.json());
 
     return response;
   }
