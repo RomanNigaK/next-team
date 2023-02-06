@@ -12,8 +12,8 @@ import {
 } from "@/redux/selectors";
 import { RootState } from "@/redux/store";
 
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import styleNumber from "./../styles/Number.module.css";
 
@@ -34,13 +34,40 @@ export default function Number() {
   );
   const { register, handleSubmit, reset, getValues } = useForm<IFormNumber>();
   const dispatch = useAppDispatch();
-
+  const [error, setError] = useState<undefined | string>();
   useEffect(() => {
     dispatch(getHistoryNumber());
     dispatch(clear());
   }, [dispatch]);
 
+  console.log(getValues());
+
   const onSubmit = handleSubmit(async (data) => {
+    const { number, negative, fractional } = data;
+
+    if (isNaN(number)) {
+      setError("Число не коректно");
+      return;
+    }
+
+    if (negative && number > 0) {
+      setError("Введенное число не являеться отрицательным");
+      return;
+    }
+    if (!negative && !(number > 0)) {
+      setError("Введенное число должно быть положительным!");
+      return;
+    }
+    if (fractional && number % 1 === 0) {
+      setError("Введенное число должно дробным");
+      return;
+    }
+    if (!fractional && !(number % 1 === 0)) {
+      setError("Введенное число должно целым");
+      return;
+    }
+
+    setError(undefined);
     dispatch(sendInputNumber(data.number));
   });
 
@@ -54,6 +81,7 @@ export default function Number() {
             register={register}
             placeholder="Введите число"
           />
+          <div className={styleNumber.error}>{error ? error : null}</div>
           <div className={styleNumber.groupchek}>
             <Checkbox
               title="Дробное число"

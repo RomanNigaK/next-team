@@ -1,4 +1,4 @@
-import { configureStore, combineReducers, AnyAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import messages from "./messagesSlice";
 import numbers from "./numberSlice";
 //import { createWrapper, HYDRATE } from "next-redux-wrapper";
